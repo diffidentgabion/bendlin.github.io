@@ -1,16 +1,16 @@
 /* --- Custom properties ------------------------------------ */
 
 :root {
-  --green: #50e050;
+  --between: oklch(0.89 0.147 115.923);
   --black: #000;
   --white: #fff;
 
-  --shelf-height: clamp(120px, 14vw, 160px);
+  --shelf-height: clamp(100px, 14vw, 160px);
   /* --track-start: clamp(220px, 28vw, 400px); label width + items start here */
   --track-gap: clamp(1rem, 1.5vw, 1.75rem);
   --item-margin: 14px; /* top/bottom gap so cards "sit on" the shelf */
 
-  --label-font-size: clamp(2rem, 4.5vw, 5rem);
+  --label-font-size: clamp(3rem, 7vw, 5rem);
   --label-pad: clamp(1rem, 2.5vw, 2.5rem);
 }
 
@@ -86,7 +86,7 @@ body {
   z-index: 2;
   padding-right: 1rem; /* buffer — items vanish behind this edge */
   font-size: var(--label-font-size);
-  font-weight: 700;
+  font-weight: 500;
   text-transform: uppercase;
   letter-spacing: -0.04em;
   line-height: 1;
@@ -142,15 +142,15 @@ body {
 
 .card--project {
   flex-shrink: 0;
-  background: var(--green);
+  background: var(--between);
   color: var(--black);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0 clamp(1.5rem, 2.5vw, 3rem);
   height: calc(var(--shelf-height) - var(--item-margin) * 2);
-  min-width: clamp(140px, 18vw, 240px);
-  font-size: clamp(0.85rem, 1.4vw, 1.5rem);
+  min-width: clamp(280px, 30vw, 440px);
+  font-size: clamp(1.1rem, 1.4vw, 1.5rem);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: -0.02em;
@@ -162,6 +162,32 @@ body {
 
 .card--project:hover {
   opacity: 0.82;
+}
+
+/* Wide variant — featured/anchor card at shelf start */
+.card--wide {
+  min-width: clamp(380px, 55vw, 700px);
+}
+
+/* Image variant — image fills card as background, text floats above */
+.card--image {
+  position: relative;
+  overflow: hidden;
+  background: none;
+  color: var(--white);
+}
+
+.card--image img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card--image span {
+  position: relative;
+  color: var(--white);
 }
 
 /* --- Project page content --------------------------------- */
