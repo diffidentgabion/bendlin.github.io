@@ -41,7 +41,7 @@ body {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background: var(--black);
+  background: var(--white);
   cursor: pointer;
   position: relative;
   text-decoration: none;
