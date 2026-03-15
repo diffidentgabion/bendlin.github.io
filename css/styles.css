@@ -1,0 +1,195 @@
+/* ============================================================
+   johanna.com — styles.css
+   Single stylesheet. No inline styles. No media query breakpoints.
+   ============================================================ */
+
+/* --- Custom properties ------------------------------------ */
+
+:root {
+  --green: #50e050;
+  --black: #000;
+  --white: #fff;
+
+  --shelf-height: clamp(120px, 14vw, 160px);
+  --track-start: clamp(220px, 28vw, 400px); /* label width + items start here */
+  --track-gap: clamp(1rem, 1.5vw, 1.75rem);
+  --item-margin: 14px; /* top/bottom gap so cards "sit on" the shelf */
+
+  --label-font-size: clamp(2rem, 4.5vw, 5rem);
+  --label-pad: clamp(1rem, 2.5vw, 2.5rem);
+}
+
+/* --- Reset ------------------------------------------------ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* --- Base ------------------------------------------------- */
+
+html {
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--white);
+  color: var(--black);
+}
+
+body {
+  min-height: 100vh;
+}
+
+/* --- Landing page ----------------------------------------- */
+
+.landing {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: var(--black);
+  cursor: pointer;
+  position: relative;
+  text-decoration: none;
+}
+
+.landing__name {
+  position: relative;
+  z-index: 1;
+  font-size: clamp(0.7rem, 1vw, 0.95rem);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: var(--white);
+  pointer-events: none;
+  user-select: none;
+}
+
+#ascii-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* --- Shelf layout ----------------------------------------- */
+
+.shelf {
+  position: relative;
+  height: var(--shelf-height);
+  border-bottom: 1px solid var(--black);
+}
+
+.shelves > .shelf:first-child {
+  border-top: 1px solid var(--black);
+}
+
+.shelf__label {
+  position: absolute;
+  left: var(--label-pad);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  padding-right: 1rem; /* buffer — items vanish behind this edge */
+  font-size: var(--label-font-size);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+}
+
+.shelf__track {
+  /* normal flow — not positioned, so the absolute label floats above cleanly */
+  width: 100%;
+  height: 100%;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  display: flex;
+  align-items: center;
+  padding-left: var(--track-start);
+  padding-right: 3rem;
+  gap: var(--track-gap);
+  scrollbar-width: none;
+  cursor: grab;
+}
+
+.shelf__track:active {
+  cursor: grabbing;
+}
+
+.shelf__track::-webkit-scrollbar {
+  display: none;
+}
+
+/* ❀ back-to-main link on project pages */
+.shelf__home {
+  position: absolute;
+  right: clamp(1rem, 2vw, 2.5rem);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  font-size: clamp(1.4rem, 2.5vw, 2.2rem);
+  text-decoration: none;
+  color: var(--black);
+  line-height: 1;
+  cursor: pointer;
+}
+
+.shelf__home:hover {
+  opacity: 0.6;
+}
+
+/* --- Nav objects (cards) ---------------------------------- */
+
+.card--project {
+  flex-shrink: 0;
+  background: var(--green);
+  color: var(--black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 clamp(1.5rem, 2.5vw, 3rem);
+  height: calc(var(--shelf-height) - var(--item-margin) * 2);
+  min-width: clamp(140px, 18vw, 240px);
+  font-size: clamp(0.85rem, 1.4vw, 1.5rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.card--project:hover {
+  opacity: 0.82;
+}
+
+/* --- Project page content --------------------------------- */
+
+.project-content {
+  /* padding: clamp(3rem, 5vw, 5rem) 0; */
+}
+
+.project-content__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  /* margin-bottom: clamp(2rem, 4vw, 4rem); */
+  background: #e0e0e0; /* visible if image fails to load */
+  /* aspect-ratio: 16 / 9; */
+  object-fit: cover;
+}
+
+/* --- Reduced motion --------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  /* ascii.js checks this independently and skips animation.
+     Nothing else on the site animates — this block is a safety net. */
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
