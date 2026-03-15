@@ -4,10 +4,10 @@
 (function () {
   'use strict';
 
-  // Random factors generated once — stable across resizes
-  var randomFactors = [];
+  // Random vw offsets generated once — stable across resizes
+  var randomOffsets = [];
   document.querySelectorAll('.shelf').forEach(function () {
-    randomFactors.push(1.3 + Math.random() * 0.9); // 1.3× to 2.2×
+    randomOffsets.push(0.1 + Math.random() * 0.25); // +10vw to +35vw on top of label zone
   });
 
   function sizeDummies() {
@@ -16,9 +16,9 @@
       var dummy = shelf.querySelector('.shelf__track > :first-child');
       if (!label || !dummy) return;
       var labelZone = label.offsetLeft + label.offsetWidth;
-      var computed = Math.round(labelZone * randomFactors[i]);
-      var max = Math.round(window.innerWidth * 0.65);
-      dummy.style.minWidth = Math.min(computed, max) + 'px';
+      var computed = labelZone + randomOffsets[i] * window.innerWidth;
+      var max = window.innerWidth * 0.62;
+      dummy.style.minWidth = Math.round(Math.min(computed, max)) + 'px';
     });
   }
 

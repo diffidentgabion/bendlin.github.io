@@ -2,8 +2,8 @@
 
 :root {
   --between: oklch(0.89 0.147 115.923);
-  --black: #000;
-  --white: #fff;
+  --black: #1a1a18;
+  --white: #f7f7f4;
 
   --shelf-height: clamp(100px, 14vw, 160px);
   /* --track-start: clamp(220px, 28vw, 400px); label width + items start here */
@@ -28,6 +28,10 @@ html {
   font-family: Arial, Helvetica, sans-serif;
   background: var(--white);
   color: var(--black);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: 'kern' 1, 'liga' 1;
 }
 
 body {
@@ -51,11 +55,13 @@ body {
   position: relative;
   z-index: 1;
   font-size: clamp(0.7rem, 1vw, 0.95rem);
-  font-weight: 400;
-  letter-spacing: 0.04em;
+  font-weight: 300;
+  letter-spacing: 0.18em;
   color: var(--black);
   pointer-events: none;
   user-select: none;
+  text-transform: lowercase;
+  opacity: 0.72;
 }
 
 #ascii-canvas {
@@ -86,9 +92,9 @@ body {
   z-index: 2;
   padding-right: 1rem; /* buffer — items vanish behind this edge */
   font-size: var(--label-font-size);
-  font-weight: 500;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.05em;
   line-height: 1;
   white-space: nowrap;
   pointer-events: none;
@@ -143,7 +149,7 @@ body {
 .card--project {
   flex-shrink: 0;
   background: var(--between);
-  color: var(--black);
+  color: var(--white);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -153,7 +159,7 @@ body {
   font-size: clamp(1.1rem, 1.4vw, 1.5rem);
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
   line-height: 1;
   text-decoration: none;
   white-space: nowrap;
@@ -161,7 +167,7 @@ body {
 }
 
 .card--project:hover {
-  opacity: 0.82;
+  opacity: 0.88;
 }
 
 /* Wide variant — featured/anchor card at shelf start */
@@ -188,6 +194,7 @@ body {
 .card--image span {
   position: relative;
   color: var(--white);
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.45);
 }
 
 /* --- Project page content --------------------------------- */
