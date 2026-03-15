@@ -1,8 +1,3 @@
-/* ============================================================
-   johanna.com — styles.css
-   Single stylesheet. No inline styles. No media query breakpoints.
-   ============================================================ */
-
 /* --- Custom properties ------------------------------------ */
 
 :root {
@@ -11,7 +6,7 @@
   --white: #fff;
 
   --shelf-height: clamp(120px, 14vw, 160px);
-  --track-start: clamp(220px, 28vw, 400px); /* label width + items start here */
+  /* --track-start: clamp(220px, 28vw, 400px); label width + items start here */
   --track-gap: clamp(1rem, 1.5vw, 1.75rem);
   --item-margin: 14px; /* top/bottom gap so cards "sit on" the shelf */
 
@@ -98,6 +93,7 @@ body {
   white-space: nowrap;
   pointer-events: none;
   user-select: none;
+  color: var(--white);
 }
 
 .shelf__track {
@@ -135,6 +131,7 @@ body {
   color: var(--black);
   line-height: 1;
   cursor: pointer;
+  color: var(--white)
 }
 
 .shelf__home:hover {
