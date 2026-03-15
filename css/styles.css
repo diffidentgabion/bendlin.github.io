@@ -172,7 +172,7 @@ body {
 
 /* Wide variant — featured/anchor card at shelf start */
 .card--wide {
-  min-width: clamp(380px, 55vw, 700px);
+  min-width: clamp(380px, 62vw, 780px);
 }
 
 /* Image variant — image fills card as background, text floats above */
