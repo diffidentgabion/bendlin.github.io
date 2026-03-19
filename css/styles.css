@@ -25,13 +25,12 @@
 /* --- Base ------------------------------------------------- */
 
 html {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: plantin, sans-serif;
   background: var(--white);
   color: var(--black);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-  font-feature-settings: 'kern' 1, 'liga' 1;
+  letter-spacing: 0.01em;
 }
 
 body {
@@ -92,8 +91,8 @@ body {
   z-index: 2;
   padding-right: 1rem; /* buffer — items vanish behind this edge */
   font-size: var(--label-font-size);
-  font-weight: 700;
-  text-transform: uppercase;
+  font-weight: 900;
+  text-transform: lowercase;
   letter-spacing: -0.05em;
   line-height: 1;
   white-space: nowrap;
@@ -114,11 +113,6 @@ body {
   padding-right: 3rem;
   gap: var(--track-gap);
   scrollbar-width: none;
-  cursor: grab;
-}
-
-.shelf__track:active {
-  cursor: grabbing;
 }
 
 .shelf__track::-webkit-scrollbar {
@@ -157,8 +151,8 @@ body {
   height: calc(var(--shelf-height) - var(--item-margin) * 2);
   min-width: clamp(280px, 30vw, 440px);
   font-size: clamp(1.1rem, 1.4vw, 1.5rem);
-  font-weight: 700;
-  text-transform: uppercase;
+  font-weight: 200;
+  text-transform: lowercase;
   letter-spacing: -0.01em;
   line-height: 1;
   text-decoration: none;
@@ -170,10 +164,51 @@ body {
   opacity: 0.88;
 }
 
+.card--dummy {
+  flex-shrink: 0;
+  background: var(--between);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 clamp(1.5rem, 2.5vw, 3rem);
+  height: calc(var(--shelf-height) - var(--item-margin) * 2);
+  min-width: clamp(280px, 30vw, 440px);
+  font-size: clamp(1.1rem, 1.4vw, 1.5rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
 /* Wide variant — featured/anchor card at shelf start */
 .card--wide {
-  min-width: clamp(380px, 62vw, 780px);
+  min-width: clamp(380px, 35vw, 780px);
 }
+
+.card--current {
+  flex-shrink: 0;
+  background: var(--white);
+  color: var(--between);
+  border: .25rem dashed var(--between);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 clamp(1.5rem, 2.5vw, 3rem);
+  height: calc(var(--shelf-height) - var(--item-margin) * 2);
+  min-width: clamp(280px, 30vw, 440px);
+  font-size: clamp(1.1rem, 1.4vw, 1.5rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
 
 /* Image variant — image fills card as background, text floats above */
 .card--image {
@@ -197,11 +232,58 @@ body {
   text-shadow: 0 1px 12px rgba(0, 0, 0, 0.45);
 }
 
+/* --- Journal photo strip ---------------------------------- */
+
+.shelf__track--strip {
+  gap: 0;
+  padding-left: 0;
+  padding-right: 0;
+  align-items: stretch;
+}
+
+.shelf__photo {
+  height: 100%;
+  width: auto;
+  flex-shrink: 0;
+  display: block;
+  cursor: zoom-in;
+}
+
+/* --- Lightbox --------------------------------------------- */
+
+#lightbox {
+  border: none;
+  outline: none;
+  padding: 0;
+  background: transparent;
+  max-width: 90vw;
+  max-height: 90vh;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.18);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#lightbox::backdrop {
+  background: transparent;
+  cursor: zoom-out;
+}
+
+body.lightbox-open .shelves {
+  filter: blur(6px);
+  transition: filter 0.1s ease;
+}
+
+#lightbox img {
+  display: block;
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+}
+
 /* --- Project page content --------------------------------- */
 
-.project-content {
-  /* padding: clamp(3rem, 5vw, 5rem) 0; */
-}
 
 .project-content__image {
   display: block;

@@ -32,4 +32,26 @@ document.querySelectorAll('.shelf__track').forEach(function (track) {
     }, { passive: false });
   });
 
+  var lightbox = document.getElementById('lightbox');
+  var lightboxImg = document.getElementById('lightbox-img');
+
+  if (lightbox && lightboxImg) {
+    document.querySelectorAll('.shelf__photo').forEach(function (img) {
+      img.addEventListener('click', function () {
+        lightboxImg.src = img.src;
+        lightbox.showModal();
+        document.body.classList.add('lightbox-open');
+      });
+    });
+
+    lightbox.addEventListener('click', function () {
+      lightbox.close();
+      document.body.classList.remove('lightbox-open');
+    });
+
+    lightbox.addEventListener('close', function () {
+      document.body.classList.remove('lightbox-open');
+    });
+  }
+
 }());
