@@ -190,11 +190,6 @@ body {
   min-width: clamp(380px, 35vw, 780px);
 }
 
-/* Light variant — card on white/light background, dark label */
-.card--light {
-  background: var(--white);
-  color: var(--black);
-}
 
 .card--current {
   flex-shrink: 0;
@@ -237,6 +232,12 @@ body {
   position: relative;
   color: var(--white);
   text-shadow: 0 1px 12px rgba(0, 0, 0, 0.45);
+}
+
+/* Light-background image card — label needs dark text */
+.card--image.card--light span {
+  color: var(--black);
+  text-shadow: 0 1px 8px rgba(255, 255, 255, 0.6);
 }
 
 /* --- Journal photo strip ---------------------------------- */
