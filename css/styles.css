@@ -99,6 +99,7 @@ body {
   pointer-events: none;
   user-select: none;
   color: var(--white);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
 }
 
 .shelf__track {
@@ -131,7 +132,8 @@ body {
   color: var(--black);
   line-height: 1;
   cursor: pointer;
-  color: var(--white)
+  color: var(--white);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
 }
 
 .shelf__home:hover {
