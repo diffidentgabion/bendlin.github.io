@@ -190,6 +190,12 @@ body {
   min-width: clamp(380px, 35vw, 780px);
 }
 
+/* Light variant — card on white/light background, dark label */
+.card--light {
+  background: var(--white);
+  color: var(--black);
+}
+
 .card--current {
   flex-shrink: 0;
   background: var(--white);
