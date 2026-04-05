@@ -1,7 +1,7 @@
 /* --- Custom properties ------------------------------------ */
 
 :root {
-  --between: oklch(0.89 0.147 115.923);
+  --green: oklch(78.047% 0.20963 150.622);
   --black: #1a1a18;
   --white: #f7f7f4;
 
@@ -119,14 +119,14 @@ body {
   display: none;
 }
 
-/* ❀ back-to-main link on project pages */
+/* back-to-main link */
 .shelf__home {
   position: absolute;
   right: clamp(1rem, 2vw, 2.5rem);
   top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(-30%);
   z-index: 3;
-  font-size: clamp(1.4rem, 2.5vw, 2.2rem);
+  font-size: clamp(1.4rem, 6.5vw, 9.2rem);
   text-decoration: none;
   color: var(--black);
   line-height: 1;
@@ -142,7 +142,7 @@ body {
 
 .card--project {
   flex-shrink: 0;
-  background: var(--between);
+  background: var(--green);
   color: var(--white);
   display: flex;
   align-items: center;
@@ -166,7 +166,7 @@ body {
 
 .card--dummy {
   flex-shrink: 0;
-  background: var(--between);
+  background: var(--green);
   color: var(--white);
   display: flex;
   align-items: center;
@@ -191,8 +191,8 @@ body {
 .card--current {
   flex-shrink: 0;
   background: var(--white);
-  color: var(--between);
-  border: .25rem dashed var(--between);
+  color: var(--green);
+  border: .25rem solid var(--green);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -201,7 +201,6 @@ body {
   min-width: clamp(280px, 30vw, 440px);
   font-size: clamp(1.1rem, 1.4vw, 1.5rem);
   font-weight: 700;
-  text-transform: uppercase;
   letter-spacing: -0.01em;
   line-height: 1;
   text-decoration: none;
