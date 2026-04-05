@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(sed 's/class=\"\"shelf__item card card--project card--wide\"\">/class=\"\"shelf__item card card--project\"\">/g; s/class=\"\"shelf__item card card--project card--image\"\"/class=\"\"shelf__item card card--project card--wide card--image\"\"/g' \"c:/Users/Traeton/Documents/00 Professional/WEB DESIGN/JOHANNA/johanna.com/main.html\")",
+      "Bash(mv /tmp/main_tmp.html \"c:/Users/Traeton/Documents/00 Professional/WEB DESIGN/JOHANNA/johanna.com/main.html\")"
+    ]
+  }
+}
