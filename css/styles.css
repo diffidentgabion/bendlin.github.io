@@ -81,9 +81,14 @@ body {
 
 .shelf {
   position: relative;
+  height: var(--shelf-height);
+  border-bottom: 1px solid var(--black);
+}
+
+.shelves .shelf {
+  height: auto;
   flex: 0 1 var(--shelf-height);
   min-height: 0;
-  border-bottom: 1px solid var(--black);
 }
 
 .shelves > .shelf:first-child {
