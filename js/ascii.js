@@ -135,6 +135,96 @@
         ]
       ],
       stalkCol: [0, 1, 1, 1]
+    },
+
+    /* ── Species D ─────────────────────────────────────────── */
+    {
+      stages: [
+        /* D1 — seed */
+        ['o'],
+
+        /* D2 — sprout */
+        ['o', '|', '~'],
+
+        /* D3 — young */
+        [
+          ' /\\',
+          '   /|\\',
+          '/|||+',
+          '~/||\\**',
+          '~~'
+        ],
+
+        /* D4 — growing */
+        [
+          '   /||||||',
+          '   /||||||',
+          '    /||||||(●)',
+          '  /||||\\(●)',
+          '/|\\',
+          '+ ',
+          '**'
+        ],
+
+        /* D5 — full */
+        [
+          ' /||||||',
+          ' /||||||',
+          '  /||||||(●)',
+          '/||||\\(●)',
+          '  |||/||  ',
+          '/||  |||\\(●)',
+          '     /||||\\',
+          '/||||\\(●)  | ',
+          '     +',
+          '        **'
+        ]
+      ],
+      stalkCol: [0, 0, 1, 3, 1]
+    },
+
+    /* ── Species E ─────────────────────────────────────────── */
+    {
+      stages: [
+        /* E1 — seed (horizontal rhizome) */
+        ['----'],
+
+        /* E2 — sprout */
+        [
+          '  /\\',
+          '  \\/\\',
+          '\\/\\/\\/',
+          '/\\/\\/',
+          '\\/\\'
+        ],
+
+        /* E3 — young */
+        [
+          '   /\\',
+          '  \\/\\',
+          '\\/\\/\\/',
+          '/\\/\\/\\',
+          '  /|\\',
+          '   + /\\/\\',
+          '  \\|/ \\/'
+        ],
+
+        /* E4 — full */
+        [
+          '/\\/\\/\\/\\',
+          '/\\/\\/\\/\\     |',
+          '\\/\\/\\/\\/       (.)',
+          '/\\/\\/\\/\\+  \\/(.)' ,
+          '  |   /\\/\\  /\\ |',
+          '(.)\\/\\/\\//\\\\/\\',
+          ' (.)   /|\\  /\\',
+          '  |     + /\\/\\',
+          '       \\|/ \\/+',
+          '    \\/',
+          '    /\\/\\'
+        ]
+      ],
+      stalkCol: [2, 2, 3, 3]
     }
 
   ];
@@ -142,12 +232,16 @@
   /* Animation timeline — plays in a loop per plant.
      Slowed right down so the cycle feels seasonal.
      dur values are base durations divided by plant.speed. */
+  /* Species A/B/C have 4 stages (0–3); Species D has 5 (0–4).
+     drawPlant caps the stage index to however many a species has,
+     so A/B/C just hold their final stage while the timeline advances. */
   var TIMELINE = [
     { type: 'show',  stage: 0, dur: 1.5  },
     { type: 'show',  stage: 1, dur: 3.0  },
     { type: 'show',  stage: 2, dur: 5.0  },
-    { type: 'show',  stage: 3, dur: 14.0 },
-    { type: 'poof',  stage: 3, dur: 1.8  }, /* short + √p easing = fast & punchy */
+    { type: 'show',  stage: 3, dur: 9.0  },
+    { type: 'show',  stage: 4, dur: 7.0  },
+    { type: 'poof',  stage: 4, dur: 1.8  }, /* short + √p easing = fast & punchy */
     { type: 'pause',           dur: 5.0  }
   ];
 
@@ -239,13 +333,16 @@
     var s = getState(t - plant.delay, plant.speed);
     if (!s) return;
 
-    var ev = s.ev;
-    var p  = s.p;
+    var ev       = s.ev;
+    var p        = s.p;
+    /* Cap to however many stages this species actually has */
+    var maxStage = SPECIES[plant.species].stages.length - 1;
+    var si       = Math.min(ev.stage, maxStage);
 
     if (ev.type === 'show') {
-      drawStage(ev.stage, 1, t, plant);
+      drawStage(si, 1, t, plant);
     } else if (ev.type === 'poof') {
-      drawStage(ev.stage, 1 - p, t, plant, p);
+      drawStage(si, 1 - p, t, plant, p);
     }
     /* pause: draw nothing */
   }
