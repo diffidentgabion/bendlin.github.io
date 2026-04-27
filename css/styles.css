@@ -53,14 +53,16 @@ body {
 .landing__name {
   position: relative;
   z-index: 1;
-  font-size: clamp(0.7rem, 1vw, 0.95rem);
-  font-weight: 300;
-  letter-spacing: 0.18em;
-  color: var(--black);
+  font-size: var(--label-font-size);
+  font-weight: 900;
+  text-transform: lowercase;
+  letter-spacing: -0.05em;
+  line-height: 1;
+  white-space: nowrap;
   pointer-events: none;
   user-select: none;
-  text-transform: lowercase;
-  opacity: 0.72;
+  color: var(--green);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
 }
 
 #ascii-canvas {
@@ -86,9 +88,9 @@ body {
 }
 
 .shelves .shelf {
-  height: auto;
   flex: 0 1 var(--shelf-height);
   min-height: 0;
+  overflow: hidden;
 }
 
 .shelves > .shelf:first-child {
@@ -137,14 +139,10 @@ body {
   position: absolute;
   right: clamp(1rem, 2vw, 2.5rem);
   top: 50%;
-  transform: translateY(-30%);
+  transform: translateY(-50%);
   z-index: 3;
-  font-size: clamp(1.4rem, 6.5vw, 9.2rem);
+  font-size: 3rem;
   text-decoration: none;
-  color: var(--black);
-  line-height: 1;
-  cursor: pointer;
-  color: var(--white);
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
 }
 
@@ -164,7 +162,7 @@ body {
   padding: 0 clamp(1.5rem, 2.5vw, 3rem);
   height: calc(100% - var(--item-margin) * 2);
   min-width: clamp(280px, 30vw, 440px);
-  font-size: clamp(1.1rem, 1.4vw, 1.5rem);
+  font-size: clamp(1.2rem, 1.6vw, 1.65rem);
   font-weight: 200;
   text-transform: lowercase;
   letter-spacing: -0.01em;
@@ -179,6 +177,7 @@ body {
 }
 
 .card--dummy {
+  order: -2;
   flex-shrink: 0;
   background: var(--green);
   color: var(--white);
@@ -188,7 +187,7 @@ body {
   padding: 0 clamp(1.5rem, 2.5vw, 3rem);
   height: calc(100% - var(--item-margin) * 2);
   min-width: clamp(280px, 30vw, 440px);
-  font-size: clamp(1.1rem, 1.4vw, 1.5rem);
+  font-size: clamp(1.2rem, 1.6vw, 1.65rem);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: -0.01em;
@@ -204,6 +203,7 @@ body {
 
 
 .card--current {
+  order: -1;
   flex-shrink: 0;
   background: var(--white);
   color: var(--green);
@@ -214,7 +214,7 @@ body {
   padding: 0 clamp(1.5rem, 2.5vw, 3rem);
   height: calc(100% - var(--item-margin) * 2);
   min-width: clamp(280px, 30vw, 440px);
-  font-size: clamp(1.1rem, 1.4vw, 1.5rem);
+  font-size: clamp(1.2rem, 1.6vw, 1.65rem);
   font-weight: 700;
   letter-spacing: -0.01em;
   line-height: 1;
@@ -242,14 +242,10 @@ body {
 
 .card--image span {
   position: relative;
-  color: var(--white);
-  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.45);
-}
-
-/* Light-background image card — label needs dark text */
-.card--image.card--light span {
-  color: var(--black);
-  text-shadow: 0 1px 8px rgba(255, 255, 255, 0.6);
+  color: var(--green);
+  text-shadow:
+  0 0 1px rgba(0,0,0,0.75),
+  0 1px 2px rgba(0,0,0,0.35);
 }
 
 /* --- Journal photo strip ---------------------------------- */
@@ -304,14 +300,14 @@ body.lightbox-open .shelves {
 
 /* --- Project page content --------------------------------- */
 
+.project-content {
+  background: var(--black);
+}
 
 .project-content__image {
   display: block;
   width: 100%;
   height: auto;
-  /* margin-bottom: clamp(2rem, 4vw, 4rem); */
-  background: #e0e0e0; /* visible if image fails to load */
-  /* aspect-ratio: 16 / 9; */
   object-fit: cover;
 }
 
