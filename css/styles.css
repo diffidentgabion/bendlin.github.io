@@ -25,7 +25,7 @@
 /* --- Base ------------------------------------------------- */
 
 html {
-  font-family: plantin, sans-serif;
+  font-family: arial, sans-serif;
   background: var(--white);
   color: var(--black);
   -webkit-font-smoothing: antialiased;
@@ -62,7 +62,8 @@ body {
   pointer-events: none;
   user-select: none;
   color: var(--green);
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+  text-transform: none;
+
 }
 
 #ascii-canvas {
