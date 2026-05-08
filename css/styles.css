@@ -4,14 +4,17 @@
   --green: oklch(78.047% 0.20963 150.622);
   --black: #1a1a18;
   --white: #f7f7f4;
+  --border-gray: #c5c5c2;
 
   --shelf-height: clamp(100px, 14vw, 160px);
-  /* --track-start: clamp(220px, 28vw, 400px); label width + items start here */
-  --track-gap: clamp(1rem, 1.5vw, 1.75rem);
-  --item-margin: 14px; /* top/bottom gap so cards "sit on" the shelf */
+  --gap: clamp(1rem, 1.75vw, 1.75rem);
+  --item-margin: calc(var(--gap) / 2);
 
-  --label-font-size: clamp(3rem, 7vw, 5rem);
-  --label-pad: clamp(1rem, 2.5vw, 2.5rem);
+  --card-width: clamp(190px, 20vw, 380px);
+  --dummy-width: var(--card-width);
+
+  --label-font-size: clamp(1.75rem, 3.5vw, 3rem);
+  --body-font-size: clamp(0.9rem, 1.2vw, 1.2rem);
 }
 
 /* --- Reset ------------------------------------------------ */
@@ -54,16 +57,13 @@ body {
   position: relative;
   z-index: 1;
   font-size: var(--label-font-size);
-  font-weight: 900;
-  text-transform: lowercase;
+  font-weight: 700;
   letter-spacing: -0.05em;
   line-height: 1;
   white-space: nowrap;
   pointer-events: none;
   user-select: none;
-  color: var(--green);
-  text-transform: none;
-
+  color: var(--black);
 }
 
 #ascii-canvas {
@@ -80,12 +80,12 @@ body {
   display: flex;
   flex-direction: column;
   max-height: 100vh;
+  padding: var(--item-margin) 0;
 }
 
 .shelf {
   position: relative;
   height: var(--shelf-height);
-  border-bottom: 1px solid var(--black);
 }
 
 .shelves .shelf {
@@ -94,27 +94,25 @@ body {
   overflow: hidden;
 }
 
-.shelves > .shelf:first-child {
-  border-top: 1px solid var(--black);
+body > .shelf {
+  margin: var(--item-margin) 0;
 }
+
 
 .shelf__label {
   position: absolute;
-  left: var(--label-pad);
-  top: 50%;
-  transform: translateY(-50%);
+  left: calc(var(--gap) + var(--item-margin));
+  top: calc(var(--item-margin) * 2);
   z-index: 2;
-  padding-right: 1rem; /* buffer — items vanish behind this edge */
   font-size: var(--label-font-size);
-  font-weight: 900;
+  font-weight: 700;
   text-transform: lowercase;
-  letter-spacing: -0.05em;
+  letter-spacing: -0.04em;
   line-height: 1;
   white-space: nowrap;
   pointer-events: none;
   user-select: none;
-  color: var(--white);
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+  color: var(--black);
 }
 
 .shelf__track {
@@ -125,9 +123,9 @@ body {
   overflow-y: hidden;
   display: flex;
   align-items: center;
-  padding-left: var(--track-start);
-  padding-right: 3rem;
-  gap: var(--track-gap);
+  padding-left: var(--gap);
+  padding-right: var(--gap);
+  gap: var(--gap);
   scrollbar-width: none;
 }
 
@@ -155,16 +153,17 @@ body {
 
 .card--project {
   flex-shrink: 0;
-  background: var(--green);
-  color: var(--white);
+  background: var(--white);
+  color: var(--black);
+  border: 1px solid var(--border-gray);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 clamp(1.5rem, 2.5vw, 3rem);
+  padding: 0 clamp(0.75rem, 1.25vw, 1.5rem);
   height: calc(100% - var(--item-margin) * 2);
-  min-width: clamp(280px, 30vw, 440px);
-  font-size: clamp(1.2rem, 1.6vw, 1.65rem);
-  font-weight: 200;
+  min-width: var(--card-width);
+  font-size: var(--body-font-size);
+  font-weight: 400;
   text-transform: lowercase;
   letter-spacing: -0.01em;
   line-height: 1;
@@ -180,43 +179,29 @@ body {
 .card--dummy {
   order: -2;
   flex-shrink: 0;
-  background: var(--green);
-  color: var(--white);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 clamp(1.5rem, 2.5vw, 3rem);
+  background: var(--white);
+  border: 1px solid var(--border-gray);
   height: calc(100% - var(--item-margin) * 2);
-  min-width: clamp(280px, 30vw, 440px);
-  font-size: clamp(1.2rem, 1.6vw, 1.65rem);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: -0.01em;
-  line-height: 1;
-  text-decoration: none;
-  white-space: nowrap;
+  min-width: var(--dummy-width);
 }
 
-/* Wide variant — featured/anchor card at shelf start */
-.card--wide {
-  min-width: clamp(380px, 35vw, 780px);
-}
+
 
 
 .card--current {
   order: -1;
   flex-shrink: 0;
   background: var(--white);
-  color: var(--green);
-  border: .25rem solid var(--green);
+  color: var(--black);
+  border: 1.5px solid var(--black);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 clamp(1.5rem, 2.5vw, 3rem);
+  padding: 0 clamp(0.75rem, 1.25vw, 1.5rem);
   height: calc(100% - var(--item-margin) * 2);
-  min-width: clamp(280px, 30vw, 440px);
-  font-size: clamp(1.2rem, 1.6vw, 1.65rem);
-  font-weight: 700;
+  min-width: var(--card-width);
+  font-size: var(--body-font-size);
+  font-weight: 400;
   letter-spacing: -0.01em;
   line-height: 1;
   text-decoration: none;
@@ -243,7 +228,7 @@ body {
 
 .card--image span {
   position: relative;
-  color: var(--green);
+  color: var(--white);
   text-shadow:
   0 0 1px rgba(0,0,0,0.75),
   0 1px 2px rgba(0,0,0,0.35);
@@ -253,8 +238,7 @@ body {
 
 .shelf__track--strip {
   gap: 0;
-  padding-left: 0;
-  padding-right: 0;
+  padding: var(--item-margin) 0;
   align-items: stretch;
 }
 
