@@ -1,12 +1,11 @@
 /* --- Custom properties ------------------------------------ */
 
 :root {
-  --green: oklch(78.047% 0.20963 150.622);
   --black: #1a1a18;
-  --white: #f7f7f4;
+  --white: #fafaf7;
+  --forest-green: #4d6642;
   --border-gray: #c5c5c2;
 
-  --shelf-height: clamp(100px, 14vw, 160px);
   --gap: clamp(1rem, 1.75vw, 1.75rem);
   --item-margin: calc(var(--gap) / 2);
 
@@ -14,7 +13,7 @@
   --dummy-width: var(--card-width);
 
   --label-font-size: clamp(1.75rem, 3.5vw, 3rem);
-  --body-font-size: clamp(0.9rem, 1.2vw, 1.2rem);
+
 }
 
 /* --- Reset ------------------------------------------------ */
@@ -85,11 +84,11 @@ body {
 
 .shelf {
   position: relative;
-  height: var(--shelf-height);
+  height: var(--shelf-height, clamp(100px, 14vw, 160px));
 }
 
 .shelves .shelf {
-  flex: 0 1 var(--shelf-height);
+  flex: 0 1 var(--shelf-height, clamp(100px, 14vw, 160px));
   min-height: 0;
   overflow: hidden;
 }
@@ -98,6 +97,14 @@ body > .shelf {
   margin: var(--item-margin) 0;
 }
 
+/* --- Shelf heights — proportional system ------------------ */
+
+.shelf--books   { --shelf-height: var(--card-width); }               /* 1/1 */
+.shelf--leaves  { --shelf-height: calc(var(--card-width) / 3); }     /* 1/3 */
+.shelf--work    { --shelf-height: calc(var(--card-width) / 2); }     /* 1/2 */
+.shelf--album   { --shelf-height: calc(var(--card-width) * 2 / 3); } /* 2/3 */
+.shelf--journal { --shelf-height: calc(var(--card-width) / 2); }     /* 1/2 */
+.shelf--contact { --shelf-height: calc(var(--card-width) / 2); }     /* 1/2 */
 
 .shelf__label {
   position: absolute;
@@ -113,6 +120,7 @@ body > .shelf {
   pointer-events: none;
   user-select: none;
   color: var(--black);
+  transition: opacity 0.3s ease;
 }
 
 .shelf__track {
@@ -162,11 +170,6 @@ body > .shelf {
   padding: 0 clamp(0.75rem, 1.25vw, 1.5rem);
   height: calc(100% - var(--item-margin) * 2);
   min-width: var(--card-width);
-  font-size: var(--body-font-size);
-  font-weight: 400;
-  text-transform: lowercase;
-  letter-spacing: -0.01em;
-  line-height: 1;
   text-decoration: none;
   white-space: nowrap;
   cursor: pointer;
@@ -176,6 +179,19 @@ body > .shelf {
   opacity: 0.88;
 }
 
+.card--text {
+  display: flex;
+  align-items: center;
+  white-space: normal;
+  min-width: calc(var(--card-width) * 2.5);
+  max-width: calc(var(--card-width) * 2.5);
+  padding: var(--item-margin) clamp(0.75rem, 1.25vw, 1.5rem);
+}
+
+address.card--project {
+  font-style: normal;
+}
+
 .card--dummy {
   order: -2;
   flex-shrink: 0;
@@ -183,10 +199,11 @@ body > .shelf {
   border: 1px solid var(--border-gray);
   height: calc(100% - var(--item-margin) * 2);
   min-width: var(--dummy-width);
+  position: relative;
+  perspective: 800px;
+  appearance: none;
+  font: inherit;
 }
-
-
-
 
 .card--current {
   order: -1;
@@ -200,10 +217,6 @@ body > .shelf {
   padding: 0 clamp(0.75rem, 1.25vw, 1.5rem);
   height: calc(100% - var(--item-margin) * 2);
   min-width: var(--card-width);
-  font-size: var(--body-font-size);
-  font-weight: 400;
-  letter-spacing: -0.01em;
-  line-height: 1;
   text-decoration: none;
   white-space: nowrap;
   cursor: pointer;
@@ -226,12 +239,57 @@ body > .shelf {
   object-fit: cover;
 }
 
+.shelf--leaves .card--project {
+  background: var(--forest-green);
+}
+
+.shelf--leaves .card--image img {
+  display: none;
+}
+
 .card--image span {
   position: relative;
-  color: var(--white);
-  text-shadow:
-  0 0 1px rgba(0,0,0,0.75),
-  0 1px 2px rgba(0,0,0,0.35);
+  color: var(--black);
+}
+
+/* --- Dummy card flip -------------------------------------- */
+
+.card--dummy__inner {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transition: transform 0.2s ease-in;
+}
+
+.shelves .card--dummy { cursor: pointer; }
+
+.card--dummy.is-flipped .card--dummy__inner {
+  transform: rotateY(180deg);
+}
+
+.card__face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.card__face--back {
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: clamp(0.4rem, 1.25vw, 1.25rem);
+  font-family: arial, sans-serif;
+  font-size: clamp(0.6rem, 1.6vw, 0.875rem);
+  font-weight: 400;
+  gap: clamp(0.25em, 0.5vw, 0.75em);
+}
+
+.shelf:has(.card--dummy.is-flipped) .shelf__label {
+  opacity: 0;
 }
 
 /* --- Journal photo strip ---------------------------------- */
