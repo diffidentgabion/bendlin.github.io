@@ -260,8 +260,8 @@ address.card--project {
 
 /* Spine variant — narrow vertical book-on-shelf card */
 .card--spine {
-  min-width: calc(var(--card-width) * 1 / 10);
-  max-width: calc(var(--card-width) * 1 / 10);
+  min-width: calc(var(--card-width) / 8);
+  max-width: calc(var(--card-width) / 8);
   padding: 0.5rem 0.15rem;
   writing-mode: vertical-rl;
   transform: rotate(180deg);
