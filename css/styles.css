@@ -101,10 +101,10 @@ body > .shelf {
 
 .shelf--books   { --shelf-height: var(--card-width); }                     /* 10/10 */
 .shelf--leaves  { --shelf-height: calc(var(--card-width) * 4 / 10); }      /*  4/10 */
-.shelf--work    { --shelf-height: calc(var(--card-width) * 6 / 10); }      /*  6/10 */
-.shelf--album   { --shelf-height: calc(var(--card-width) * 7 / 10); }      /*  7/10 */
+.shelf--work    { --shelf-height: calc(var(--card-width) * 8 / 10); }      /*  8/10 */
+.shelf--album   { --shelf-height: calc(var(--card-width) * 8 / 10); }      /*  8/10 */
 .shelf--journal { --shelf-height: calc(var(--card-width) * 6 / 10); }      /*  6/10 */
-.shelf--contact { --shelf-height: calc(var(--card-width) * 7 / 10); }      /*  7/10 */
+.shelf--contact { --shelf-height: calc(var(--card-width) * 6 / 10); }      /*  6/10 */
 
 .shelf__label {
   position: absolute;
