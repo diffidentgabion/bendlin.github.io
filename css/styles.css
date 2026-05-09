@@ -100,7 +100,7 @@ body > .shelf {
 /* --- Shelf heights — x/10 proportional system ------------- */
 
 .shelf--books   { --shelf-height: var(--card-width); }                     /* 10/10 */
-.shelf--leaves  { --shelf-height: calc(var(--card-width) * 4 / 10); }      /*  4/10 */
+.shelf--leaves  { --shelf-height: calc(var(--card-width) * 5 / 10); }      /*  4/10 */
 .shelf--work    { --shelf-height: calc(var(--card-width) * 8 / 10); }      /*  8/10 */
 .shelf--album   { --shelf-height: calc(var(--card-width) * 8 / 10); }      /*  8/10 */
 .shelf--journal { --shelf-height: calc(var(--card-width) * 6 / 10); }      /*  6/10 */
@@ -172,10 +172,15 @@ body > .shelf {
   min-width: var(--card-width);
   text-decoration: none;
   white-space: nowrap;
+}
+
+a.card--project,
+button.card--project {
   cursor: pointer;
 }
 
-.card--project:hover {
+a.card--project:hover,
+button.card--project:hover {
   opacity: 0.88;
 }
 
