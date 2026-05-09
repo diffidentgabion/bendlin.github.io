@@ -247,9 +247,21 @@ address.card--project {
   display: none;
 }
 
+
 .card--image span {
   position: relative;
   color: var(--black);
+}
+
+/* Spine variant — narrow vertical book-on-shelf card */
+.card--spine {
+  min-width: calc(var(--card-width) / 6);
+  max-width: calc(var(--card-width) / 6);
+  padding: 0.5rem 0.15rem;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  overflow: hidden;
+  font-size: clamp(0.65rem, 0.85vw, 0.85rem);
 }
 
 /* --- Dummy card flip -------------------------------------- */
@@ -296,12 +308,15 @@ address.card--project {
 
 .shelf__track--strip {
   gap: 0;
-  padding: var(--item-margin) 0;
-  align-items: stretch;
+  padding-left: var(--gap);
+}
+
+.shelf__track--strip .card--dummy {
+  margin-right: var(--gap);
 }
 
 .shelf__photo {
-  height: 100%;
+  height: calc(100% - var(--item-margin) * 2);
   width: auto;
   flex-shrink: 0;
   display: block;
