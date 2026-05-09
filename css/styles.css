@@ -9,7 +9,7 @@
   --gap: clamp(1rem, 1.75vw, 1.75rem);
   --item-margin: calc(var(--gap) / 2);
 
-  --card-width: clamp(190px, 20vw, 380px);
+  --card-width: clamp(160px, 18vw, 340px);
   --dummy-width: var(--card-width);
 
   --label-font-size: clamp(1.75rem, 3.5vw, 3rem);
