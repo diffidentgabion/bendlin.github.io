@@ -99,7 +99,7 @@ body > .shelf {
 
 /* --- Shelf heights — x/10 proportional system ------------- */
 
-.shelf--books   { --shelf-height: var(--card-width); }                     /* 10/10 */
+.shelf--books   { --shelf-height: calc(var(--card-width) * 12 / 10); }     /* 12/10 */
 .shelf--leaves  { --shelf-height: calc(var(--card-width) * 5 / 10); }      /*  4/10 */
 .shelf--work    { --shelf-height: calc(var(--card-width) * 8 / 10); }      /*  8/10 */
 .shelf--album   { --shelf-height: calc(var(--card-width) * 8 / 10); }      /*  8/10 */
@@ -260,13 +260,14 @@ address.card--project {
 
 /* Spine variant — narrow vertical book-on-shelf card */
 .card--spine {
-  min-width: calc(var(--card-width) / 6);
-  max-width: calc(var(--card-width) / 6);
+  min-width: calc(var(--card-width) * 1 / 10);
+  max-width: calc(var(--card-width) * 1 / 10);
   padding: 0.5rem 0.15rem;
   writing-mode: vertical-rl;
   transform: rotate(180deg);
   overflow: hidden;
   font-size: clamp(0.65rem, 0.85vw, 0.85rem);
+  justify-content: flex-start;
 }
 
 /* --- Dummy card flip -------------------------------------- */
