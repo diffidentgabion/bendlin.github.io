@@ -45,13 +45,21 @@ document.querySelectorAll('.shelf__track').forEach(function (track) {
     document.querySelectorAll('.shelf__photo').forEach(function (img) {
       img.addEventListener('click', function () {
         lightboxImg.src = img.src;
-        lightbox.showModal();
+        if (typeof lightbox.showModal === 'function') {
+          lightbox.showModal();
+        } else {
+          lightbox.setAttribute('open', '');
+        }
         document.body.classList.add('lightbox-open');
       });
     });
 
     lightbox.addEventListener('click', function () {
-      lightbox.close();
+      if (typeof lightbox.close === 'function') {
+        lightbox.close();
+      } else {
+        lightbox.removeAttribute('open');
+      }
       document.body.classList.remove('lightbox-open');
     });
 

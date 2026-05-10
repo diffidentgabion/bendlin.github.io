@@ -33,10 +33,12 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   letter-spacing: 0.01em;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
   min-height: 100vh;
+  min-height: 100svh;
 }
 
 /* --- Landing page ----------------------------------------- */
@@ -46,6 +48,7 @@ body {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+  min-height: 100svh;
   background: var(--white);
   cursor: pointer;
   position: relative;
@@ -79,6 +82,7 @@ body {
   display: flex;
   flex-direction: column;
   max-height: 100vh;
+  max-height: 100svh;
   padding: var(--item-margin) 0;
 }
 
@@ -91,6 +95,7 @@ body {
   flex: 0 1 var(--shelf-height, clamp(100px, 14vw, 160px));
   min-height: 0;
   overflow: hidden;
+  overflow: clip; /* clip: visual only, doesn't block child touch-scroll in iOS Safari */
 }
 
 body > .shelf {
@@ -100,10 +105,10 @@ body > .shelf {
 /* --- Shelf heights — x/10 proportional system ------------- */
 
 .shelf--books   { --shelf-height: calc(var(--card-width) * 12 / 10); }     /* 12/10 */
-.shelf--leaves  { --shelf-height: calc(var(--card-width) * 5 / 10); }      /*  4/10 */
+.shelf--leaves  { --shelf-height: calc(var(--card-width) * 5 / 10); }      /*  5/10 */
 .shelf--work    { --shelf-height: calc(var(--card-width) * 8 / 10); }      /*  8/10 */
 .shelf--album   { --shelf-height: calc(var(--card-width) * 8 / 10); }      /*  8/10 */
-.shelf--journal { --shelf-height: calc(var(--card-width) * 6 / 10); }      /*  6/10 */
+.shelf--journal { --shelf-height: calc(var(--card-width) * 8 / 10); }      /*  8/10 */
 .shelf--contact { --shelf-height: calc(var(--card-width) * 6 / 10); }      /*  6/10 */
 
 .shelf__label {
@@ -124,9 +129,8 @@ body > .shelf {
 }
 
 .shelf__track {
-  /* normal flow — not positioned, so the absolute label floats above cleanly */
-  width: 100%;
-  height: 100%;
+  position: absolute;
+  inset: 0;
   overflow-x: scroll;
   overflow-y: hidden;
   display: flex;
@@ -184,15 +188,6 @@ button.card--project:hover {
   opacity: 0.88;
 }
 
-.card--text {
-  display: flex;
-  align-items: center;
-  white-space: normal;
-  min-width: calc(var(--card-width) * 2.5);
-  max-width: calc(var(--card-width) * 2.5);
-  padding: var(--item-margin) clamp(0.75rem, 1.25vw, 1.5rem);
-}
-
 address.card--project {
   font-style: normal;
 }
@@ -200,12 +195,14 @@ address.card--project {
 .card--dummy {
   order: -2;
   flex-shrink: 0;
+  color: inherit;
   background: var(--white);
   border: 1px solid var(--border-gray);
   height: calc(100% - var(--item-margin) * 2);
   min-width: var(--dummy-width);
   position: relative;
   perspective: 800px;
+  -webkit-appearance: none;
   appearance: none;
   font: inherit;
 }
@@ -296,9 +293,9 @@ address.card--project {
   transform: rotateY(180deg);
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  text-align: center;
+  text-align: left;
   padding: clamp(0.4rem, 1.25vw, 1.25rem);
   font-family: arial, sans-serif;
   font-size: clamp(0.6rem, 1.6vw, 0.875rem);
@@ -365,14 +362,30 @@ body.lightbox-open .shelves {
 /* --- Project page content --------------------------------- */
 
 .project-content {
+  --scan-crop: 10vw;
   background: var(--black);
+  overflow: hidden;
 }
 
 .project-content__image {
   display: block;
   width: 100%;
   height: auto;
-  object-fit: cover;
+  margin-top: calc(-1 * var(--scan-crop));
+}
+
+.project-content__image:first-child {
+  margin-top: calc(-0.5 * var(--scan-crop));
+}
+
+/* --- Desktop overflow — leaves / work / album always scroll */
+
+@media (min-width: 960px) {
+  .shelf--leaves,
+  .shelf--work,
+  .shelf--album {
+    --card-width: 28vw;
+  }
 }
 
 /* --- Reduced motion --------------------------------------- */
