@@ -9,7 +9,8 @@
   --gap: clamp(1rem, 1.75vw, 1.75rem);
   --item-margin: calc(var(--gap) / 2);
 
-  --card-width: clamp(160px, 18vw, 340px);
+  --base-card-width: clamp(160px, 18vw, 340px);
+  --card-width: var(--base-card-width);
   --dummy-width: var(--card-width);
 
   --label-font-size: clamp(1.75rem, 3.5vw, 3rem);
@@ -104,12 +105,12 @@ body > .shelf {
 
 /* --- Shelf heights — x/10 proportional system ------------- */
 
-.shelf--books   { --shelf-height: calc(var(--card-width) * 12 / 10); }     /* 12/10 */
-.shelf--leaves  { --shelf-height: calc(var(--card-width) * 5 / 10); }      /*  5/10 */
-.shelf--work    { --shelf-height: calc(var(--card-width) * 8 / 10); }      /*  8/10 */
-.shelf--album   { --shelf-height: calc(var(--card-width) * 8 / 10); }      /*  8/10 */
-.shelf--journal { --shelf-height: calc(var(--card-width) * 8 / 10); }      /*  8/10 */
-.shelf--contact { --shelf-height: calc(var(--card-width) * 6 / 10); }      /*  6/10 */
+.shelf--books   { --shelf-height: calc(var(--base-card-width) * 10 / 10); }     /* 10/10 */
+.shelf--leaves  { --shelf-height: calc(var(--base-card-width) * 5 / 10); }      /*  5/10 */
+.shelf--work    { --shelf-height: calc(var(--base-card-width) * 8 / 10); }      /*  8/10 */
+.shelf--album   { --shelf-height: calc(var(--base-card-width) * 8 / 10); }      /*  8/10 */
+.shelf--journal { --shelf-height: calc(var(--base-card-width) * 8 / 10); }      /*  8/10 */
+.shelf--contact { --shelf-height: calc(var(--base-card-width) * 5 / 10); }      /*  5/10 */
 
 .shelf__label {
   position: absolute;
