@@ -112,6 +112,33 @@ body > .shelf {
 .shelf--journal { --shelf-height: calc(var(--base-card-width) * 8 / 10); }      /*  8/10 */
 .shelf--contact { --shelf-height: calc(var(--base-card-width) * 5 / 10); }      /*  5/10 */
 
+/* Books shelf: height auto-fits to longest spine title */
+.shelf--books {
+  height: auto;
+  overflow: visible;
+}
+
+.shelves .shelf--books {
+  flex: 0 0 auto;
+}
+
+.shelf--books .shelf__track {
+  position: relative;
+  height: auto;
+  padding-top: var(--item-margin);
+  padding-bottom: var(--item-margin);
+  align-items: stretch;
+}
+
+.shelf--books .card--spine {
+  height: auto;
+  min-height: fit-content;
+}
+
+.shelf--books .card--dummy {
+  height: auto;
+}
+
 .shelf__label {
   position: absolute;
   left: calc(var(--gap) + var(--item-margin));
@@ -285,7 +312,7 @@ address.card--project {
   transition: transform 0.2s ease-in;
 }
 
-.shelves button.card--dummy { cursor: pointer; }
+button.card--dummy { cursor: pointer; }
 div.card--dummy { pointer-events: none; }
 
 .card--dummy.is-flipped .card--dummy__inner {
