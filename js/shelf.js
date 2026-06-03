@@ -38,6 +38,20 @@ document.querySelectorAll('.shelf__track').forEach(function (track) {
     });
   });
 
+  function positionShelfHome() {
+    var home = document.querySelector('.shelf__home');
+    if (!home) return;
+    var h = home.parentElement.offsetHeight;
+    if (h > 0) home.style.top = (h / 2) + 'px';
+  }
+
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(positionShelfHome);
+  } else {
+    window.addEventListener('load', positionShelfHome);
+  }
+  window.addEventListener('resize', positionShelfHome);
+
   var lightbox = document.getElementById('lightbox');
   var lightboxImg = document.getElementById('lightbox-img');
 

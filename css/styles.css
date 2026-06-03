@@ -175,7 +175,7 @@ body > .shelf {
 
 /* back-to-main link */
 .shelf__home {
-  position: absolute;
+  position: fixed;
   right: clamp(1rem, 2vw, 2.5rem);
   top: 50%;
   transform: translateY(-50%);
