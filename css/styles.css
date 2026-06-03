@@ -285,7 +285,8 @@ address.card--project {
   transition: transform 0.2s ease-in;
 }
 
-.shelves .card--dummy { cursor: pointer; }
+.shelves button.card--dummy { cursor: pointer; }
+div.card--dummy { pointer-events: none; }
 
 .card--dummy.is-flipped .card--dummy__inner {
   transform: rotateY(180deg);

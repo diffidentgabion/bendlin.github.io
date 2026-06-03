@@ -32,7 +32,7 @@ document.querySelectorAll('.shelf__track').forEach(function (track) {
     }, { passive: false });
   });
 
-  document.querySelectorAll('.shelves .card--dummy').forEach(function (card) {
+  document.querySelectorAll('button.card--dummy').forEach(function (card) {
     card.addEventListener('click', function () {
       card.classList.toggle('is-flipped');
     });
