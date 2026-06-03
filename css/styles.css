@@ -383,9 +383,12 @@ body.lightbox-open .shelves {
 
 @media (min-width: 960px) {
   .shelf--leaves,
-  .shelf--work,
-  .shelf--album {
+  .shelf--work {
     --card-width: 28vw;
+  }
+
+  .shelf--album {
+    --card-width: min(28vw, 280px);
   }
 }
 
