@@ -250,6 +250,14 @@ address.card--project {
   display: none;
 }
 
+.shelf--album .card--image {
+  background: var(--black);
+}
+
+.shelf--album .card--image img {
+  object-fit: contain;
+}
+
 
 .card--image span {
   position: relative;
@@ -383,12 +391,9 @@ body.lightbox-open .shelves {
 
 @media (min-width: 960px) {
   .shelf--leaves,
-  .shelf--work {
-    --card-width: 28vw;
-  }
-
+  .shelf--work,
   .shelf--album {
-    --card-width: min(28vw, 280px);
+    --card-width: 28vw;
   }
 }
 
