@@ -1,437 +1,452 @@
 /* --- Custom properties ------------------------------------ */
 
 :root {
-  --black: #1a1a18;
-  --white: #fafaf7;
-  --forest-green: #4a5e45;
-  --border-gray: #c5c5c2;
+    --black: #1a1a18;
+    --white: #fafaf7;
+    --forest-green: #4a5e45;
+    --border-gray: #c5c5c2;
 
-  --gap: clamp(1rem, 1.75vw, 1.75rem);
-  --item-margin: calc(var(--gap) / 2);
+    --gap: clamp(1rem, 1.75vw, 1.75rem);
+    --item-margin: calc(var(--gap) / 2);
 
-  --base-card-width: clamp(160px, 18vw, 340px);
-  --card-width: var(--base-card-width);
-  --dummy-width: var(--card-width);
+    --base-card-width: clamp(160px, 18vw, 340px);
+    --card-width: var(--base-card-width);
+    --dummy-width: var(--card-width);
 
-  --label-font-size: clamp(1.75rem, 3.5vw, 3rem);
-
+    --label-font-size: clamp(1.75rem, 3.5vw, 3rem);
 }
 
 /* --- Reset ------------------------------------------------ */
 
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 /* --- Base ------------------------------------------------- */
 
 html {
-  font-family: arial, sans-serif;
-  background: var(--white);
-  color: var(--black);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  letter-spacing: 0.01em;
-  -webkit-tap-highlight-color: transparent;
+    font-family: arial, sans-serif;
+    background: var(--white);
+    color: var(--black);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    letter-spacing: 0.01em;
+    -webkit-tap-highlight-color: transparent;
 }
 
 body {
-  min-height: 100vh;
-  min-height: 100svh;
+    min-height: 100vh;
+    min-height: 100svh;
 }
 
 /* --- Landing page ----------------------------------------- */
 
 .landing {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  min-height: 100svh;
-  background: var(--white);
-  cursor: pointer;
-  position: relative;
-  text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    min-height: 100svh;
+    background: var(--white);
+    cursor: pointer;
+    position: relative;
+    text-decoration: none;
 }
 
 .landing__name {
-  position: relative;
-  z-index: 1;
-  font-size: var(--label-font-size);
-  font-weight: 700;
-  letter-spacing: -0.05em;
-  line-height: 1;
-  white-space: nowrap;
-  pointer-events: none;
-  user-select: none;
-  color: var(--black);
+    position: relative;
+    z-index: 1;
+    font-size: var(--label-font-size);
+    font-weight: 700;
+    letter-spacing: -0.05em;
+    line-height: 1;
+    white-space: nowrap;
+    pointer-events: none;
+    user-select: none;
+    color: var(--black);
 }
 
 #ascii-canvas {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
 }
 
 /* --- Shelf layout ----------------------------------------- */
 
 .shelves {
-  display: flex;
-  flex-direction: column;
-  max-height: 100vh;
-  max-height: 100svh;
-  padding: var(--item-margin) 0;
+    display: flex;
+    flex-direction: column;
+    max-height: 100vh;
+    max-height: 100svh;
+    padding: var(--item-margin) 0;
 }
 
 .shelf {
-  position: relative;
-  height: var(--shelf-height, clamp(100px, 14vw, 160px));
+    position: relative;
+    height: var(--shelf-height, clamp(100px, 14vw, 160px));
 }
 
 .shelves .shelf {
-  flex: 0 1 var(--shelf-height, clamp(100px, 14vw, 160px));
-  min-height: 0;
-  overflow: hidden;
-  overflow: clip; /* clip: visual only, doesn't block child touch-scroll in iOS Safari */
+    flex: 0 1 var(--shelf-height, clamp(100px, 14vw, 160px));
+    min-height: 0;
+    overflow: hidden;
+    overflow: clip; /* clip: visual only, doesn't block child touch-scroll in iOS Safari */
 }
 
 body > .shelf {
-  margin: var(--item-margin) 0;
+    margin: var(--item-margin) 0;
 }
 
 /* --- Shelf heights — x/10 proportional system ------------- */
 
-.shelf--books   { --shelf-height: calc(var(--base-card-width) * 10 / 10); }     /* 10/10 */
-.shelf--leaves  { --shelf-height: calc(var(--base-card-width) * 5 / 10); }      /*  5/10 */
-.shelf--work    { --shelf-height: calc(var(--base-card-width) * 8 / 10); }      /*  8/10 */
-.shelf--album   { --shelf-height: calc(var(--base-card-width) * 8 / 10); }      /*  8/10 */
-.shelf--journal { --shelf-height: calc(var(--base-card-width) * 8 / 10); }      /*  8/10 */
-.shelf--contact { --shelf-height: calc(var(--base-card-width) * 5 / 10); }      /*  5/10 */
+.shelf--books {
+    --shelf-height: calc(var(--base-card-width) * 10 / 10);
+} /* 10/10 */
+.shelf--leaves {
+    --shelf-height: calc(var(--base-card-width) * 5 / 10);
+} /*  5/10 */
+.shelf--work {
+    --shelf-height: calc(var(--base-card-width) * 8 / 10);
+} /*  8/10 */
+.shelf--album {
+    --shelf-height: calc(var(--base-card-width) * 8 / 10);
+} /*  8/10 */
+.shelf--journal {
+    --shelf-height: calc(var(--base-card-width) * 8 / 10);
+} /*  8/10 */
+.shelf--contact {
+    --shelf-height: calc(var(--base-card-width) * 5 / 10);
+} /*  5/10 */
 
 /* Books shelf: height auto-fits to longest spine title */
 .shelf--books {
-  height: auto;
-  overflow: visible;
+    height: auto;
+    overflow: visible;
 }
 
 .shelves .shelf--books {
-  flex: 0 0 auto;
+    flex: 0 0 auto;
 }
 
 .shelf--books .shelf__track {
-  position: relative;
-  height: auto;
-  padding-top: var(--item-margin);
-  padding-bottom: var(--item-margin);
-  align-items: stretch;
+    position: relative;
+    height: auto;
+    padding-top: var(--item-margin);
+    padding-bottom: var(--item-margin);
+    align-items: stretch;
 }
 
 .shelf--books .card--spine {
-  height: auto;
-  min-height: fit-content;
+    height: auto;
+    min-height: fit-content;
 }
 
 .shelf--books .card--dummy {
-  height: auto;
+    height: auto;
 }
 
 .shelf__label {
-  position: absolute;
-  left: calc(var(--gap) + var(--item-margin));
-  top: calc(var(--item-margin) * 2);
-  z-index: 2;
-  font-size: var(--label-font-size);
-  font-weight: 700;
-  text-transform: lowercase;
-  letter-spacing: -0.04em;
-  line-height: 1;
-  white-space: nowrap;
-  pointer-events: none;
-  user-select: none;
-  color: var(--black);
-  transition: opacity 0.3s ease;
+    position: absolute;
+    left: calc(var(--gap) + var(--item-margin));
+    top: calc(var(--item-margin) * 2);
+    z-index: 2;
+    font-size: var(--label-font-size);
+    font-weight: 700;
+    text-transform: lowercase;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    white-space: nowrap;
+    pointer-events: none;
+    user-select: none;
+    color: var(--black);
+    transition: opacity 0.3s ease;
 }
 
 .shelf__track {
-  position: absolute;
-  inset: 0;
-  overflow-x: scroll;
-  overflow-y: hidden;
-  display: flex;
-  align-items: center;
-  padding-left: var(--gap);
-  padding-right: var(--gap);
-  gap: var(--gap);
-  scrollbar-width: none;
+    position: absolute;
+    inset: 0;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    display: flex;
+    align-items: center;
+    padding-left: var(--gap);
+    padding-right: var(--gap);
+    gap: var(--gap);
+    scrollbar-width: none;
 }
 
 .shelf__track::-webkit-scrollbar {
-  display: none;
+    display: none;
 }
 
 /* back-to-main link */
 .shelf__home {
-  position: fixed;
-  right: clamp(1rem, 2vw, 2.5rem);
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 3;
-  font-size: 3rem;
-  text-decoration: none;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+    position: fixed;
+    right: clamp(1rem, 2vw, 2.5rem);
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 3;
+    font-size: 3rem;
+    text-decoration: none;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
 }
 
 .shelf__home:hover {
-  opacity: 0.6;
+    opacity: 0.6;
 }
 
 /* --- Nav objects (cards) ---------------------------------- */
 
 .card--project {
-  flex-shrink: 0;
-  background: var(--white);
-  color: var(--black);
-  border: 1px solid var(--border-gray);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 clamp(0.75rem, 1.25vw, 1.5rem);
-  height: calc(100% - var(--item-margin) * 2);
-  min-width: var(--card-width);
-  text-decoration: none;
-  white-space: nowrap;
+    flex-shrink: 0;
+    background: var(--white);
+    color: var(--black);
+    border: 1px solid var(--border-gray);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 clamp(0.75rem, 1.25vw, 1.5rem);
+    height: calc(100% - var(--item-margin) * 2);
+    min-width: var(--card-width);
+    text-decoration: none;
+    white-space: nowrap;
 }
 
 a.card--project,
 button.card--project {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 a.card--project:hover,
 button.card--project:hover {
-  opacity: 0.88;
+    opacity: 0.88;
 }
 
 address.card--project {
-  font-style: normal;
+    font-style: normal;
 }
 
 .card--dummy {
-  order: -2;
-  flex-shrink: 0;
-  color: inherit;
-  background: var(--white);
-  border: 1px solid var(--border-gray);
-  height: calc(100% - var(--item-margin) * 2);
-  min-width: var(--dummy-width);
-  position: relative;
-  perspective: 800px;
-  -webkit-appearance: none;
-  appearance: none;
-  font: inherit;
+    order: -2;
+    flex-shrink: 0;
+    color: inherit;
+    background: var(--white);
+    border: 1px solid var(--border-gray);
+    height: calc(100% - var(--item-margin) * 2);
+    min-width: var(--dummy-width);
+    position: relative;
+    perspective: 800px;
+    -webkit-appearance: none;
+    appearance: none;
+    font: inherit;
 }
 
 .card--current {
-  order: -1;
-  flex-shrink: 0;
-  background: var(--white);
-  color: var(--black);
-  border: 1.5px solid var(--black);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 clamp(0.75rem, 1.25vw, 1.5rem);
-  height: calc(100% - var(--item-margin) * 2);
-  min-width: var(--card-width);
-  text-decoration: none;
-  white-space: nowrap;
-  cursor: pointer;
+    order: -1;
+    flex-shrink: 0;
+    background: var(--white);
+    color: var(--black);
+    border: 1.5px solid var(--black);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 clamp(0.75rem, 1.25vw, 1.5rem);
+    height: calc(100% - var(--item-margin) * 2);
+    min-width: var(--card-width);
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
 }
-
 
 /* Image variant — image fills card as background, text floats above */
 .card--image {
-  position: relative;
-  overflow: hidden;
-  background: none;
-  color: var(--white);
+    position: relative;
+    overflow: hidden;
+    background: none;
+    color: var(--white);
 }
 
 .card--image img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .shelf--leaves .card--project {
-  background: var(--forest-green);
+    background: var(--forest-green);
 }
 
 .shelf--leaves .card--image img {
-  display: none;
+    display: none;
 }
 
 .shelf--album .card--image {
-  background: var(--black);
+    background: var(--black);
 }
 
 .shelf--album .card--image img {
-  object-fit: contain;
+    object-fit: contain;
 }
 
-
 .card--image span {
-  position: relative;
-  color: var(--black);
+    position: relative;
+    color: var(--black);
 }
 
 /* Spine variant — narrow vertical book-on-shelf card */
 .card--spine {
-  min-width: calc(var(--card-width) / 8);
-  max-width: calc(var(--card-width) / 8);
-  padding: 0.5rem 0.15rem;
-  writing-mode: vertical-rl;
-  transform: rotate(180deg);
-  overflow: hidden;
-  font-size: clamp(0.65rem, 0.85vw, 0.85rem);
-  justify-content: flex-start;
+    min-width: calc(var(--card-width) / 8);
+    max-width: calc(var(--card-width) / 8);
+    padding: 0.5rem 0.15rem;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    overflow: hidden;
+    font-size: clamp(0.65rem, 0.85vw, 0.85rem);
+    justify-content: flex-start;
 }
 
 /* --- Dummy card flip -------------------------------------- */
 
 .card--dummy__inner {
-  position: absolute;
-  inset: 0;
-  transform-style: preserve-3d;
-  transition: transform 0.2s ease-in;
+    position: absolute;
+    inset: 0;
+    transform-style: preserve-3d;
+    transition: transform 0.2s ease-in;
 }
 
-button.card--dummy { cursor: pointer; }
-div.card--dummy { pointer-events: none; }
+button.card--dummy {
+    cursor: pointer;
+}
+div.card--dummy {
+    pointer-events: none;
+}
 
 .card--dummy.is-flipped .card--dummy__inner {
-  transform: rotateY(180deg);
+    transform: rotateY(180deg);
 }
 
 .card__face {
-  position: absolute;
-  inset: 0;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
 }
 
 .card__face--back {
-  transform: rotateY(180deg);
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  text-align: left;
-  padding: clamp(0.4rem, 1.25vw, 1.25rem);
-  font-family: arial, sans-serif;
-  font-size: clamp(0.6rem, 1.6vw, 0.875rem);
-  font-weight: 400;
-  gap: clamp(0.25em, 0.5vw, 0.75em);
+    transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: left;
+    padding: clamp(0.4rem, 1.25vw, 1.25rem);
+    font-family: arial, sans-serif;
+    font-size: clamp(0.6rem, 1.6vw, 0.875rem);
+    font-weight: 400;
+    gap: clamp(0.25em, 0.5vw, 0.75em);
 }
 
 .shelf:has(.card--dummy.is-flipped) .shelf__label {
-  opacity: 0;
+    opacity: 0;
 }
 
 /* --- Journal photo strip ---------------------------------- */
 
 .shelf__track--strip {
-  gap: 0;
-  padding-left: var(--gap);
+    gap: 0;
+    padding-left: var(--gap);
 }
 
 .shelf__track--strip .card--dummy {
-  margin-right: var(--gap);
+    margin-right: var(--gap);
 }
 
 .shelf__photo {
-  height: calc(100% - var(--item-margin) * 2);
-  width: auto;
-  flex-shrink: 0;
-  display: block;
-  cursor: zoom-in;
+    height: calc(100% - var(--item-margin) * 2);
+    width: auto;
+    flex-shrink: 0;
+    display: block;
+    cursor: zoom-in;
 }
 
 /* --- Lightbox --------------------------------------------- */
 
 #lightbox {
-  border: none;
-  outline: none;
-  padding: 0;
-  background: transparent;
-  max-width: 90vw;
-  max-height: 90vh;
-  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.18);
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+    border: none;
+    outline: none;
+    padding: 0;
+    background: transparent;
+    max-width: 90vw;
+    max-height: 90vh;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.18);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 #lightbox::backdrop {
-  background: transparent;
-  cursor: zoom-out;
+    background: transparent;
+    cursor: zoom-out;
 }
 
 body.lightbox-open .shelves {
-  filter: blur(6px);
-  transition: filter 0.1s ease;
+    filter: blur(6px);
+    transition: filter 0.1s ease;
 }
 
 #lightbox img {
-  display: block;
-  max-width: 90vw;
-  max-height: 90vh;
-  object-fit: contain;
+    display: block;
+    max-width: 90vw;
+    max-height: 90vh;
+    object-fit: contain;
 }
 
 /* --- Project page content --------------------------------- */
 
 .project-content {
-  --scan-crop: 10vw;
-  background: var(--black);
-  overflow: hidden;
+    --scan-crop: 10vw;
+    background: var(--black);
+    overflow: hidden;
 }
 
 .project-content__image {
-  display: block;
-  width: 100%;
-  height: auto;
-  margin-top: calc(-1 * var(--scan-crop));
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-top: calc(-1 * var(--scan-crop));
 }
 
 .project-content__image:first-child {
-  margin-top: calc(-0.5 * var(--scan-crop));
+    margin-top: calc(1 * var(--scan-crop));
 }
 
 /* --- Desktop overflow — leaves / work / album always scroll */
 
 @media (min-width: 960px) {
-  .shelf--leaves,
-  .shelf--work,
-  .shelf--album {
-    --card-width: 28vw;
-  }
+    .shelf--leaves,
+    .shelf--work,
+    .shelf--album {
+        --card-width: 28vw;
+    }
 }
 
 /* --- Reduced motion --------------------------------------- */
 
 @media (prefers-reduced-motion: reduce) {
-  /* ascii.js checks this independently and skips animation.
+    /* ascii.js checks this independently and skips animation.
      Nothing else on the site animates — this block is a safety net. */
-  * {
-    animation: none !important;
-    transition: none !important;
-  }
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
 }
