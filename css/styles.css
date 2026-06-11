@@ -191,8 +191,7 @@ body > .shelf {
     position: fixed;
     font-style: none;
     right: clamp(1rem, 2vw, 2.5rem);
-    top: 50%;
-    transform: translateY(-50%);
+    top: calc(var(--item-margin) * 3);
     z-index: 3;
     font-size: 3rem;
     text-decoration: none;
