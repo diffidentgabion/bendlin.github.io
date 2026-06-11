@@ -189,6 +189,7 @@ body > .shelf {
 /* back-to-main link */
 .shelf__home {
     position: fixed;
+    font-style: none;
     right: clamp(1rem, 2vw, 2.5rem);
     top: 50%;
     transform: translateY(-50%);
