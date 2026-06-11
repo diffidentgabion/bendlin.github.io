@@ -423,11 +423,11 @@ body.lightbox-open .shelves {
     display: block;
     width: 100%;
     height: auto;
-    margin-top: 0;
+    margin-top: calc(-1 * var(--scan-crop));
 }
 
 .project-content__image:first-child {
-    margin-top: var(--scan-crop);
+    margin-top: 0;
 }
 
 /* --- Desktop overflow — leaves / work / album always scroll */
