@@ -423,7 +423,7 @@ body.lightbox-open .shelves {
     display: block;
     width: 100%;
     height: auto;
-    margin-top: calc(-1 * var(--scan-crop));
+    margin-top: var(--scan-crop);
 }
 
 .project-content__image:first-child {
