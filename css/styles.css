@@ -189,13 +189,12 @@ body > .shelf {
 /* back-to-main link */
 .shelf__home {
     position: fixed;
-    font-style: none;
     right: clamp(1rem, 2vw, 2.5rem);
-    top: calc(var(--item-margin) * 3);
+    margin-top: calc(var(--item-margin) * -3.2);
     z-index: 3;
     font-size: var(--label-font-size);
     line-height: 1;
-    color: var(--black);
+    color: var(--forest-green);
     text-decoration: none;
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
 }
