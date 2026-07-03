@@ -190,7 +190,7 @@ body > .shelf {
 .shelf__home {
     position: fixed;
     right: clamp(1rem, 2vw, 2.5rem);
-    margin-top: calc(var(--item-margin) * -3.2);
+    top: calc(var(--item-margin) * 3);
     z-index: 3;
     font-size: var(--label-font-size);
     line-height: 1;
@@ -424,11 +424,6 @@ body.lightbox-open .shelves {
     display: block;
     width: 100%;
     height: auto;
-    margin-top: calc(-1 * var(--scan-crop));
-}
-
-.project-content__image:first-child {
-    margin-top: 0;
 }
 
 /* --- Desktop overflow — leaves / work / album always scroll */
