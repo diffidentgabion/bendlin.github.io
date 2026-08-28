@@ -412,6 +412,76 @@ body.lightbox-open .shelves {
     object-fit: contain;
 }
 
+/* --- Event splash popup ------------------------------------ */
+
+.splash {
+    border: 1px solid var(--border-gray);
+    background: var(--white);
+    color: var(--black);
+    margin: 0;
+    padding: clamp(1.25rem, 3vw, 2.5rem);
+    width: min(92vw, 480px);
+    max-height: 85vh;
+    overflow-y: auto;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    flex-direction: column;
+    gap: clamp(0.6em, 1.2vw, 0.9em);
+    font-family: arial, sans-serif;
+    font-weight: 700;
+    font-size: clamp(1rem, 1.6vw, 1.35rem);
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+    cursor: pointer;
+    opacity: 1;
+    transition: opacity 0.2s ease;
+}
+
+/* display kept out of the base rule: an author "display" declaration
+   here would override the browser's built-in dialog:not([open]) hiding,
+   leaving the closed dialog laid out (invisible but still clickable) */
+.splash:not([open]) {
+    display: none;
+}
+
+.splash[open] {
+    display: flex;
+}
+
+.splash__break {
+    margin-top: clamp(0.6em, 1.2vw, 0.9em);
+}
+
+.splash::backdrop {
+    background: rgba(26, 26, 24, 0.22);
+    opacity: 1;
+    transition: opacity 0.2s ease;
+}
+
+.splash.is-closing {
+    opacity: 0;
+}
+
+.splash.is-closing::backdrop {
+    opacity: 0;
+}
+
+.splash__link {
+    color: inherit;
+    text-decoration: underline;
+}
+
+.splash__link:focus-visible {
+    outline: 1px solid var(--black);
+    outline-offset: 2px;
+}
+
+.splash:focus-visible {
+    outline: none;
+}
+
 /* --- Project page content --------------------------------- */
 
 .project-content {

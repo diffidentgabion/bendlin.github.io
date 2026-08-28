@@ -2,7 +2,14 @@
   "permissions": {
     "allow": [
       "Bash(sed 's/class=\"\"shelf__item card card--project card--wide\"\">/class=\"\"shelf__item card card--project\"\">/g; s/class=\"\"shelf__item card card--project card--image\"\"/class=\"\"shelf__item card card--project card--wide card--image\"\"/g' \"c:/Users/Traeton/Documents/00 Professional/WEB DESIGN/JOHANNA/johanna.com/main.html\")",
-      "Bash(mv /tmp/main_tmp.html \"c:/Users/Traeton/Documents/00 Professional/WEB DESIGN/JOHANNA/johanna.com/main.html\")"
+      "Bash(mv /tmp/main_tmp.html \"c:/Users/Traeton/Documents/00 Professional/WEB DESIGN/JOHANNA/johanna.com/main.html\")",
+      "Bash(git checkout *)",
+      "Bash(Get-Content \"C:\\\\Users\\\\Traeton\\\\Documents\\\\00 Professional\\\\WEB DESIGN\\\\JOHANNA\\\\johanna.com\\\\work\\\\harvest-column.html\")",
+      "Bash(Select-String \"img\")",
+      "Bash(Select-Object -First 40)",
+      "Bash(Get-Content \"C:\\\\Users\\\\Traeton\\\\Documents\\\\00 Professional\\\\WEB DESIGN\\\\JOHANNA\\\\johanna.com\\\\work\\\\sand-garden.html\")",
+      "Bash(python -c ' *)",
+      "Bash(python -c \"import playwright; print\\('py-playwright'\\)\")"
     ]
   }
 }
