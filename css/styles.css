@@ -234,6 +234,24 @@ address.card--project {
     font-style: normal;
 }
 
+p.card--project {
+    margin: 0;
+}
+
+.card--credit > span {
+    margin: auto;
+}
+
+.card--credit a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+}
+
+.card--credit a:hover {
+    opacity: 0.6;
+}
+
 .card--dummy {
     order: -2;
     flex-shrink: 0;
