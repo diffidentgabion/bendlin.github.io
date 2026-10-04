@@ -106,7 +106,7 @@ body > .shelf {
 
 /* --- Shelf heights — x/10 proportional system ------------- */
 
-.shelf--books {
+.shelf--library {
     --shelf-height: calc(var(--base-card-width) * 10 / 10);
 } /* 10/10 */
 .shelf--leaves {
@@ -125,17 +125,17 @@ body > .shelf {
     --shelf-height: calc(var(--base-card-width) * 5 / 10);
 } /*  5/10 */
 
-/* Books shelf: height auto-fits to longest spine title */
-.shelf--books {
+/* Library shelf: height auto-fits to longest spine title */
+.shelf--library {
     height: auto;
     overflow: visible;
 }
 
-.shelves .shelf--books {
+.shelves .shelf--library {
     flex: 0 0 auto;
 }
 
-.shelf--books .shelf__track {
+.shelf--library .shelf__track {
     position: relative;
     height: auto;
     padding-top: var(--item-margin);
@@ -143,12 +143,12 @@ body > .shelf {
     align-items: stretch;
 }
 
-.shelf--books .card--spine {
+.shelf--library .card--spine {
     height: auto;
     min-height: fit-content;
 }
 
-.shelf--books .card--dummy {
+.shelf--library .card--dummy {
     height: auto;
 }
 
