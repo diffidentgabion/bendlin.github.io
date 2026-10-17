@@ -312,10 +312,6 @@ p.card--project {
     background: var(--black);
 }
 
-.shelf--album .card--image img {
-    object-fit: contain;
-}
-
 .card--image span {
     position: relative;
     color: var(--black);
