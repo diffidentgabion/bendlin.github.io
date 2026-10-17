@@ -80,11 +80,12 @@ body {
 
 /* --- Shelf layout ----------------------------------------- */
 
+/* Shelf mode is exactly one screen */
 .shelves {
     display: flex;
     flex-direction: column;
-    max-height: 100vh;
-    max-height: 100svh;
+    height: 100vh;
+    height: 100svh;
     padding: var(--item-margin) 0;
 }
 
@@ -157,6 +158,10 @@ body > .shelf {
     left: calc(var(--gap) + var(--item-margin));
     top: calc(var(--item-margin) * 2);
     z-index: 2;
+}
+
+.shelf__label,
+.journal__label {
     font-size: var(--label-font-size);
     font-weight: 700;
     text-transform: lowercase;
@@ -374,7 +379,7 @@ div.card--dummy {
     opacity: 0;
 }
 
-/* --- Journal photo strip ---------------------------------- */
+/* --- Journal photo strip (shelf mode) --------------------- */
 
 .shelf__track--strip {
     gap: 0;
@@ -385,12 +390,97 @@ div.card--dummy {
     margin-right: var(--gap);
 }
 
-.shelf__photo {
+/* One link around the whole strip: any photo opens the journal view */
+.shelf__strip {
+    display: flex;
+    flex-shrink: 0;
     height: calc(100% - var(--item-margin) * 2);
+}
+
+.shelf__strip:hover {
+    opacity: 0.88;
+}
+
+.shelf__photo {
+    height: 100%;
     width: auto;
     flex-shrink: 0;
     display: block;
+}
+
+/* --- Journal view ----------------------------------------- */
+
+/* Shelf mode and journal view are exclusive: shelf.js hides one with the
+   hidden attribute. Needed because .journal's display: grid would
+   otherwise override the browser's built-in [hidden] { display: none } */
+.shelves[hidden],
+.journal[hidden] {
+    display: none;
+}
+
+.journal {
+    --journal-columns: 4;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto; /* minmax: let the photo grid shrink on narrow screens */
+    align-items: start;
+    gap: var(--gap);
+    min-height: 100vh;
+    min-height: 100svh;
+    padding: var(--gap);
+}
+
+.journal__label {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+/* Spans both rows so it stays stuck for the whole journal,
+   and disappears with it when scrolling back up to the shelves */
+.journal__home {
+    position: sticky;
+    top: var(--gap);
+    right: auto;
+    grid-column: 2;
+    grid-row: 1 / span 2;
+}
+
+/* No-JS fallback: CSS columns (fills column by column) */
+.journal__grid {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    min-width: 0;
+    columns: var(--journal-columns);
+    column-gap: var(--gap);
+}
+
+.journal__photo {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-bottom: var(--gap);
+    break-inside: avoid;
     cursor: zoom-in;
+}
+
+/* shelf.js deals photos into --journal-columns columns, newest first, each
+   into the shortest column — reads left to right like a Tumblr dashboard */
+.journal__grid.is-masonry {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--gap);
+    columns: auto;
+}
+
+.journal__col {
+    flex: 1 1 0;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+}
+
+.journal__col .journal__photo {
+    margin-bottom: 0;
 }
 
 /* --- Lightbox --------------------------------------------- */
@@ -414,7 +504,8 @@ div.card--dummy {
     cursor: zoom-out;
 }
 
-body.lightbox-open .shelves {
+body.lightbox-open .shelves,
+body.lightbox-open .journal {
     filter: blur(6px);
     transition: filter 0.1s ease;
 }
@@ -508,6 +599,14 @@ body.lightbox-open .shelves {
     display: block;
     width: 100%;
     height: auto;
+}
+
+/* --- Phone journal — two columns (shelf.js re-deals on change) */
+
+@media (max-width: 600px) {
+    .journal {
+        --journal-columns: 2;
+    }
 }
 
 /* --- Desktop overflow — leaves / work / album always scroll */
