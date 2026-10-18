@@ -198,13 +198,20 @@ body > .shelf {
     z-index: 3;
     font-size: var(--label-font-size);
     line-height: 1;
-    color: var(--forest-green);
     text-decoration: none;
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
 }
 
 .shelf__home:hover {
     opacity: 0.6;
+}
+
+/* Image, not the 🪏 emoji: it only exists on systems from 2025 on.
+   Sized in em so it scales with the label, like the emoji did */
+.shelf__icon {
+    display: block;
+    width: 1em;
+    height: 1em;
 }
 
 /* --- Nav objects (cards) ---------------------------------- */
