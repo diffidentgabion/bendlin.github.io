@@ -93,9 +93,13 @@ body {
     height: var(--shelf-height, clamp(100px, 14vw, 160px));
 }
 
+/* Shelves shrink to fit short screens, but never below the label plus an
+   equal margin above and below it inside the title card: shelf gap + card
+   margin + one line of label (line-height 1) + card margin + shelf gap.
+   The label's top offset never moves, so at this floor it sits centered. */
 .shelves .shelf {
     flex: 0 1 var(--shelf-height, clamp(100px, 14vw, 160px));
-    min-height: 0;
+    min-height: calc(var(--label-font-size) + var(--item-margin) * 4);
     overflow: hidden;
     overflow: clip; /* clip: visual only, doesn't block child touch-scroll in iOS Safari */
 }
